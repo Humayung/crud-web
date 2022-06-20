@@ -23,14 +23,13 @@
     </div>
     <div class="mb-3">
       <label class="form-label pt-0" for="content">Content</label>
-      <input
+      <textarea
         class="form-control"
         id="content"
         name="content"
-        type="text"
+        rows="10"
         required
-        value="<%=post[0].content%>"
-      />
+      ><%=post[0].content%></textarea>
     </div>
     <div class="mb-3">
       <label class="form-label pt-0" for="category">Category</label>
