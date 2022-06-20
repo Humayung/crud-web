@@ -1,0 +1,71 @@
+<%- include('../includes/header'); %>
+
+  <div class="container">
+    <h2>
+      All Post
+    </h2>
+    <li><a class="btn btn-primary btn-sm" href="#"
+      onclick="openForm('posts/create', 'create')">
+        <span class="me-3"> Create</span></a>
+    </li>
+    <table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.forEach(post => { %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td>
+          <a href="/posts/<%= post.id %>/edit">
+            <button class="btn btn-primary">
+              Edit
+            </button>
+          </a>
+          <a href="/posts/<%= post.id %>/delete">
+            <button class="btn btn-danger">
+              Delete
+            </button>
+          </a>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+  </div>
+<script>
+  $(document).on("submit", "#create-form", function() {
+              event.preventDefault();
+              var formData = new FormData();
+              formData.append("title",$("input[name=title]").val())
+              formData.append("content",$("input[name=content]").val())
+              $.ajax({
+                  url: "/posts/store",
+                  type: "POST",
+                  data: formData,
+                  dataType: "json",
+                  contentType: false,
+                  processData: false,
+                  beforeSend: function() {
+                      $("button").attr("disabled", true);
+                  },
+                  success: function(response) {
+                      $("button").attr("disabled", false);
+                      $("#create-form").trigger("reset");
+                      formModal.hide();
+                  },
+                  error: function(reject) {
+                      $("button").attr("disabled", false);
+                      formModal.hide();
+                  }
+              })
+          })
+</script>
+  <%- include('../includes/footer'); %>
