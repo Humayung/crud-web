@@ -55,12 +55,7 @@ module.exports = {
       { where: { id: req.body.id } }
     );
     console.log("adasdadasd ", req.body);
-    const [posts, metadata] = await db.query(
-      "SELECT Posts.id, Posts.content, Posts.date, Posts.title, Authors.username as 'author', Categories.name as 'category' FROM Posts INNER JOIN Authors ON Authors.id=Posts.author_id INNER JOIN Categories ON Categories.id=Posts.category_id"
-    );
-    return res.render("post/index", {
-      posts,
-    });
+    return res.redirect("/posts");
   },
 
   store: async (req, res) => {
