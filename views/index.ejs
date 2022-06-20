@@ -1,10 +1,33 @@
 <%- include('./includes/header'); %>
 
-  <div class="container">
-    <h1><%= title %></h1>
-    <h2>
-      <%= name %>
-    </h2>
+<div class="container">
+  <div>
+    <a class="text-decoration-none text-dark">
+      <div id="trend-now">
+        <div class="py-5">
+          <h1 class="trend-title display-5 fw-bold">Website Berita</h1>
+        </div>
+      </div>
+    </a>
   </div>
+  <div class="section-title fw-bold display-5 mb-4">
+    <aclass="text-decoration-none text-dark">
+      <h2>Latest News</h2>
+    </a>
+  </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+      <% posts.forEach(post => { %>
+      <a
+        class="col text-decoration-none text-dark news-box"
+      >
+        <span class="badge bg-primary"><%= post.category %> </span>
+        <h3 class="news-title fw-bold"><%= post.title %></h3>
+        <p><%= post.date; %> / <%= post.author %></p>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+</div>
 
-  <%- include('./includes/footer'); %>
+<%- include('./includes/footer'); %>

@@ -1,13 +1,23 @@
 <%- include('../includes/header'); %>
 <div class="container">
-  <form action="/posts/store" method="post">
+  <form action="update" method="post">
     <div class="mb-3">
+    <label class="form-label pt-0" for="id">Id</label>
+      <input
+        class="form-control"
+        id="id"
+        name="id"
+        type="text"
+        value="<%=post[0].id%>"
+        required
+      />
       <label class="form-label pt-0" for="title">Title</label>
       <input
         class="form-control"
         id="title"
         name="title"
         type="text"
+        value="<%=post[0].title%>"
         required
       />
     </div>
@@ -19,13 +29,14 @@
         name="content"
         type="text"
         required
+        value="<%=post[0].content%>"
       />
     </div>
     <div class="mb-3">
       <label class="form-label pt-0" for="category">Category</label>
       <select class="form-control" name="category_id" id="category_id" required>
         <% categories.forEach(category => { %>
-        <option value="<%= category.id %>"><%= category.name %></option>
+            <option <%= post[0].category_id == category.id ? 'selected' : '' %> value="<%= category.id  %>"><%= category.name %></option>
         <% }); %>
       </select>
     </div>
