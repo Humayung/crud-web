@@ -45,7 +45,7 @@ module.exports = {
   update: async (req, res) => {
     const userSession = req.session.user;
     if (!userSession) return res.render("author/login");
-    Post.update(
+    await Post.update(
       {
         title: req.body.title,
         content: req.body.content,
